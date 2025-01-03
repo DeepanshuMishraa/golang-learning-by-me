@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math/cmplx"
 	"math/rand"
 )
 
@@ -21,10 +22,30 @@ func split(sum int)(x,y int){
 	return
 }
 
+//Variables
+var c, python, java bool; // default value is false
+
+//data types
+
+var(
+	ToBe bool = false
+	MaxInt uint64 = 1<<64 - 1
+	z complex128 = cmplx.Sqrt(-5 + 12i)
+)
+
 func main(){
 	fmt.Println("Hello World");
 	fmt.Println("My favourite number is : ",rand.Intn(10)); // prints a random number between 0 and 9
 
 	fmt.Println("Addition of 2 and 3  is : ",add(2,3))
 	fmt.Println(swap("Hello","World"))
+	fmt.Println(split(17))
+	fmt.Println(c,python,java)
+
+	name := "Deepanshu"
+	fmt.Println(name)
+
+	fmt.Printf("Type %T Value : %v\n",ToBe,ToBe)
+	fmt.Printf("Type %T Value : %v\n",MaxInt,MaxInt)
+	fmt.Printf("Type %T Value : %v\n",z,z)
 }
