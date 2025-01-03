@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"math/cmplx"
 	"math/rand"
+	"math"
 )
 
 //custom functions
@@ -48,4 +49,12 @@ func main(){
 	fmt.Printf("Type %T Value : %v\n",ToBe,ToBe)
 	fmt.Printf("Type %T Value : %v\n",MaxInt,MaxInt)
 	fmt.Printf("Type %T Value : %v\n",z,z)
+
+	//type conversion
+	var x,y int = 3,4;
+	var f float64 = math.Sqrt(float64(x*x + y*y))
+	fmt.Printf("Type %T Value : %v\n",f,f);
+	var m uint = uint(f);
+	fmt.Printf("Type %T Value : %v\n",m,m);
+
 }

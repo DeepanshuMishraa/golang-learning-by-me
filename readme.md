@@ -116,21 +116,20 @@ var i = 10;
 
 Here, the type of the variable is inferred from the value.
 
-
 ### 4. [Data Types](data-types)
 
 - Go is a statically typed language. The type of a variable is known at compile time.
 
 - Go has the following basic data types:
 
-    - bool
-    - string
-    - int, int8, int16, int32, int64
-    - uint, uint8, uint16, uint32, uint64, uintptr
-    - byte (alias for uint8)
-    - rune (alias for int32)
-    - float32, float64
-    - complex64, complex128
+  - bool
+  - string
+  - int, int8, int16, int32, int64
+  - uint, uint8, uint16, uint32, uint64, uintptr
+  - byte (alias for uint8)
+  - rune (alias for int32)
+  - float32, float64
+  - complex64, complex128
 
 - The zero value of a variable is the default value of the variable.
 
@@ -141,7 +140,6 @@ Here, the type of the variable is inferred from the value.
 - The zero value of a string variable is an empty string.
 
 - The zero value of a slice variable is nil.
-
 
 ```go
 var(
@@ -159,6 +157,10 @@ Variable Identifier:
 - %v -> value of the variable
 - %s -> string representation of the value
 - %d -> decimal representation of the value
+- %f -> float representation of the value
+- %g -> float representation of the value
+- %p -> pointer representation of the value
+- %q => a single-quoted character literal safely escaped with Go syntax.
 
 ```go
 fmt.Printf("Type: %T Value: %v\n", ToBe, ToBe)
@@ -171,7 +173,6 @@ uint64 -> unsigned 64-bit integers (0 to 18446744073709551615) -> 0 to 2^64 - 1
 byte -> alias for uint8
 rune -> alias for int32
 
-
 ### printf vs println vs print
 
 - fmt.Printf -> formatted output -> when you want to format the output like C printf
@@ -179,3 +180,30 @@ rune -> alias for int32
 - fmt.Println -> adds a newline at the end of the output
 
 - fmt.Print -> does not add a newline at the end of the output
+
+### Explicit Type Conversion
+
+- Go requires explicit type conversion when converting between different types.
+
+- Type conversion is done using the type name followed by the value in parentheses.
+
+```go
+	//type conversion
+	var x,y int = 3,4;
+	var f float64 = math.Sqrt(float64(x*x + y*y))
+	fmt.Printf("Type %T Value : %v\n",f,f);
+	var m uint = uint(f);
+	fmt.Printf("Type %T Value : %v\n",m,m);
+```
+
+### 5. [Constants](constants)
+
+- Constants are declared using the `const` keyword followed by the constant name and the value.
+
+- Constants cannot be declared using the `:=` syntax.
+
+- Constants can be character, string, boolean, or numeric values.
+
+```go
+const Pi = 3.14
+```
