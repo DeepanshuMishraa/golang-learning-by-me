@@ -57,4 +57,14 @@ func main(){
 	var m uint = uint(f);
 	fmt.Printf("Type %T Value : %v\n",m,m);
 
+	//loops
+	sum:=0;
+
+	for i:=0;i<10;i++{
+		sum+=i;
+	}
+	fmt.Println(sum);
+
+	
+
 }

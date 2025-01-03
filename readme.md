@@ -207,3 +207,49 @@ rune -> alias for int32
 ```go
 const Pi = 3.14
 ```
+
+### 6.Loops
+
+- Go has only one looping construct, the for loop.
+
+- The for loop has three components: the init statement, the condition, and the post statement.
+
+- The init statement is executed before the first iteration.
+
+- The condition is evaluated before every iteration.
+
+- The post statement is executed at the end of every iteration.
+
+- The init statement and the post statement are optional.
+
+- The for loop can be used to iterate over an array, slice, string, map, or channel.
+
+```go
+func main(){
+    sum := 0;
+    for i:=0;i<10;i++{
+        sum += i;
+    }
+    fmt.Println(sum);
+}
+```
+
+here the init statement is `i:=0`, the condition is `i<10`, and the post statement is `i++`.
+
+#### Implementing a while loop in Go
+
+- Go does not have a while loop.
+
+- The for loop can be used to implement a while loop.
+
+```go
+func main(){
+    sum := 1;
+    for sum < 1000{
+        sum += sum;
+    }
+    fmt.Println(sum);
+}
+```
+
+Since, there is no init or post statement, it is equivalent to a while loop.
