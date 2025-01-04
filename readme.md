@@ -439,3 +439,35 @@ func main(){
     fmt.Println(v)
 }
 ```
+
+
+### Arrays
+
+- An array is a fixed-size collection of elements of the same type.
+
+- An array is a value type.
+
+- The length of an array is part of its type.
+
+- The length of an array is fixed.
+
+- The length of an array is specified at the time of declaration.
+
+- The length of array can be determined using the `len` function.
+
+```go
+
+func main(){
+	var a[2] string; // array of strings
+	a[0] = "Hello";
+	a[1] = "World";
+	fmt.Println(a[0],a[1]);
+	fmt.Println(a);
+
+	primes := [6]int{2,3,5,7,11,13}; // another way to declare and initialize an array
+
+	fmt.Println(primes);
+}
+```
+
+Arrays cannot be resized. The length of an array is part of its type. The length of an array is fixed.
