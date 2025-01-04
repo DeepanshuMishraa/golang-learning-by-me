@@ -253,3 +253,38 @@ func main(){
 ```
 
 Since, there is no init or post statement, it is equivalent to a while loop.
+
+
+### if else else if statement
+
+- The if statement is used to execute a block of code if the condition is true.
+
+- The else statement is used to execute a block of code if the condition is false.
+
+```go
+func main(){
+    fmt.Println(sqrt(2),sqrt(-4));
+}
+
+func sqrt(x float64) string{
+    if x<0{
+        return sqrt(-x) + "i";
+    }
+    return fmt.Sprint(math.Sqrt(x));
+}
+```
+
+- The if statement can have an optional init statement that is executed before the condition.
+
+- The scope of the variables declared in the init statement is limited to the if block.
+
+```go
+
+func pow(x,n,lim float64) float64{
+    if v:= math.Pow(x,n); v<lim{
+        return v;
+    }
+    return lim;
+}
+```
+

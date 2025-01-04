@@ -64,7 +64,4 @@ func main(){
 		sum+=i;
 	}
 	fmt.Println(sum);
-
-	
-
 }
