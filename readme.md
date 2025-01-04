@@ -309,3 +309,46 @@ switch os:= runtime.GOOS;os{
 ```
 
 Here runtime is a package that provides functions to interact with the Go runtime environment.
+
+
+### Defer Statement
+
+- The defer statement is used to defer the execution of a function until the surrounding function returns.
+
+- The deferred function is executed in LIFO order.
+
+- The deferred function is executed even if the surrounding function panics.
+
+```go
+func main(){
+    defer fmt.Println("world");
+    fmt.Println("hello");
+}
+```
+
+Here, the `world` statement is deferred until the `main` function returns.
+
+In simple terms, defer is used to delay the execution of a function until the surrounding function returns.
+
+```go
+func main(){
+	fmt.Println("Counting");
+
+	for i:=0;i<10;i++{
+		defer fmt.Println(i);
+	}
+
+	fmt.Println("DOne");
+}
+```
+
+Here the deferred function is executed in LIFO order.
+means the output will be 9,8,7,6,5,4,3,2,1,0. as the deferred function is executed after the surrounding function returns. So first the loop will run and then the deferred function will be executed
+
+#### why to use defer?
+
+- Defer is used to ensure that a function call is performed later in a program's execution, usually for purposes of cleanup.
+
+- Defer is commonly used to close a file, unlock a mutex, or print a finalizing message.
+
+- Let's say you open a file and in the end you close the file but the file is not closed due to some error in the middle of the program. So, defer is used to ensure that the file is closed in the end.and avoids the memory leaks. In the end when you defer the closing it will even close the file if there is an error in the middle of the program.
