@@ -2,9 +2,10 @@ package main
 
 import (
 	"fmt"
+	"math"
 	"math/cmplx"
 	"math/rand"
-	"math"
+	"runtime"
 )
 
 //custom functions
@@ -64,4 +65,16 @@ func main(){
 		sum+=i;
 	}
 	fmt.Println(sum);
+
+	//switch
+
+	switch os:= runtime.GOOS;os{
+	case "darwin":
+		fmt.Println("OS X");
+	case "linux":
+		fmt.Println("Linux");
+	default:
+		//freebsd,openbsd,windows
+		fmt.Printf("%s.\n",os);
+	}
 }

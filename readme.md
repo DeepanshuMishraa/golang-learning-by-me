@@ -288,3 +288,24 @@ func pow(x,n,lim float64) float64{
 }
 ```
 
+
+
+### Switch Statement
+
+- The switch statement is used to execute a block of code based on the value of an expression.
+
+- The switch statement can be used to replace long if-else chains.
+
+```go
+switch os:= runtime.GOOS;os{
+	case "darwin":
+		fmt.Println("OS X");
+	case "linux":
+		fmt.Println("Linux");
+	default:
+		//freebsd,openbsd,windows
+		fmt.Printf("%s.\n",os);
+	}
+```
+
+Here runtime is a package that provides functions to interact with the Go runtime environment.
