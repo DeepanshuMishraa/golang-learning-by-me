@@ -29,6 +29,10 @@ func main(){
 	s = append(s, 2, 3, 4);
 
 	printSlice(s);
+
+	for i,v := range s{
+		fmt.Printf("%d %d\n", i, v);
+	}
 }
 
 func printSlice(s []int){
