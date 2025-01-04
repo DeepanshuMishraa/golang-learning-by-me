@@ -352,3 +352,48 @@ means the output will be 9,8,7,6,5,4,3,2,1,0. as the deferred function is execut
 - Defer is commonly used to close a file, unlock a mutex, or print a finalizing message.
 
 - Let's say you open a file and in the end you close the file but the file is not closed due to some error in the middle of the program. So, defer is used to ensure that the file is closed in the end.and avoids the memory leaks. In the end when you defer the closing it will even close the file if there is an error in the middle of the program.
+
+
+### Reference Types
+
+- Reference types are types that hold references to the underlying data.
+
+- Reference types are used to store the memory address of the value.
+
+- Reference types are used to share data between two or more variables.
+
+- The golang reference types are:
+
+  - slices
+  - maps
+  - channels
+  - pointers
+
+
+#### Pointers
+```go
+func main(){
+	i,j := 42,2701;
+
+	p := &i;
+	fmt.Println(*p); // point to i
+	*p = 21; // set i through the pointer->dereferencing
+	fmt.Println(i); // see the new value of i
+
+	p = &j; // point to j
+	*p = *p / 37; // divide j through the pointer
+	fmt.Println(j); // see the new value of j
+}
+```
+
+Explanation:
+
+- `p := &i` -> p points to the memory address of i.
+
+- `*p = 21` -> set the value of i through the pointer.
+
+- `p = &j` -> p points to the memory address of j.
+
+- `*p = *p / 37` -> divide the value of j through the pointer.
+
+- `fmt.Println(j)` -> see the new value of j.
