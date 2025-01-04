@@ -254,7 +254,6 @@ func main(){
 
 Since, there is no init or post statement, it is equivalent to a while loop.
 
-
 ### if else else if statement
 
 - The if statement is used to execute a block of code if the condition is true.
@@ -288,8 +287,6 @@ func pow(x,n,lim float64) float64{
 }
 ```
 
-
-
 ### Switch Statement
 
 - The switch statement is used to execute a block of code based on the value of an expression.
@@ -309,7 +306,6 @@ switch os:= runtime.GOOS;os{
 ```
 
 Here runtime is a package that provides functions to interact with the Go runtime environment.
-
 
 ### Defer Statement
 
@@ -353,7 +349,6 @@ means the output will be 9,8,7,6,5,4,3,2,1,0. as the deferred function is execut
 
 - Let's say you open a file and in the end you close the file but the file is not closed due to some error in the middle of the program. So, defer is used to ensure that the file is closed in the end.and avoids the memory leaks. In the end when you defer the closing it will even close the file if there is an error in the middle of the program.
 
-
 ### Reference Types
 
 - Reference types are types that hold references to the underlying data.
@@ -369,8 +364,8 @@ means the output will be 9,8,7,6,5,4,3,2,1,0. as the deferred function is execut
   - channels
   - pointers
 
-
 #### Pointers
+
 ```go
 func main(){
 	i,j := 42,2701;
@@ -397,3 +392,50 @@ Explanation:
 - `*p = *p / 37` -> divide the value of j through the pointer.
 
 - `fmt.Println(j)` -> see the new value of j.
+
+#### Structs
+
+- A struct is a collection of fields.
+
+- A struct is a user-defined type.
+
+- A struct is used to group related data.
+
+- A struct is defined using the `type` and `struct` keywords.
+
+```go
+func main(){
+
+// create a struct
+
+type Vertex struct{
+	x int
+	y int
+}
+	//initialise a struct
+
+	v:= Vertex{1,2}
+	v.x = 4;
+	fmt.Println(v.x)
+	fmt.Println(v);
+
+}
+```
+
+Here we have created a struct `Vertex` with two fields `x` and `y`. We have initialized the struct with the values `1` and `2`. We have changed the value of `x` to `4`.
+
+
+- Pointers to structs
+
+- Struct fields can be accessed using a struct pointer.
+
+- To access the field `x` of a struct `v`, we can use `v.x`.
+
+```go
+func main(){
+    v := Vertex{1,2}
+    p := &v
+    p.x = 1e9
+    fmt.Println(v)
+}
+```
