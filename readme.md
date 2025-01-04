@@ -471,3 +471,99 @@ func main(){
 ```
 
 Arrays cannot be resized. The length of an array is part of its type. The length of an array is fixed.
+
+
+### Slices
+
+- A slice is a variable-length collection of elements of the same type.
+
+- A slice is a reference type.
+
+- A slice does not store the elements.
+
+- A slice stores the reference to the underlying array.
+
+- A slice is a lightweight data structure.
+
+- A slice is a wrapper around an array.
+
+- A slice is a dynamic array.
+
+```go
+func main(){
+    primes := [6]int{2,3,5,7,11,13};
+    var s []int = primes[1:4];
+    fmt.Println(s);
+}
+```
+
+Here, we have created a slice `s` that contains the elements `3,5,7` of the array `primes`.
+
+
+#### Slice Literals
+
+- A slice literal is like an array literal without the length.
+
+- A slice literal creates the underlying array and builds a slice that references it.
+
+```go
+func main(){
+    q := []int{2,3,5,7,11,13};
+    fmt.Println(q);
+}
+```
+
+#### Append on slice
+
+- The `append` function appends the elements to the slice.
+
+- The `append` function returns a new slice.
+
+- The `append` function can append more than one element.
+
+```go
+func main(){
+    var s []int;
+    printSlice(s);
+
+    s = append(s,0);
+    printSlice(s);
+
+    s = append(s,1);
+    printSlice(s);
+
+    s = append(s,2,3,4);
+    printSlice(s);
+}
+
+func printSlice(s []int){
+    fmt.Printf("len=%d cap=%d %v\n",len(s),cap(s),s);
+}
+```
+
+## Variadic Functions
+
+- A variadic function is a function that can accept a variable number of arguments.
+
+- A variadic function can accept zero or more arguments.
+
+- A variadic function is defined using the `...` syntax followed by the type.
+
+```go
+func sum(nums ...int){
+    fmt.Print(nums," ");
+    total := 0;
+    for _,num := range nums{
+        total += num;
+    }
+    fmt.Println(total);
+}
+
+func main(){
+    sum(1,2);
+    sum(1,2,3);
+    sum(1,2,3,4);
+}
+```
+
+Here, the `sum` function can accept a variable number of arguments. The `nums` parameter is a slice of integers.
