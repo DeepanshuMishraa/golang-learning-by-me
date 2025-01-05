@@ -795,3 +795,58 @@ Here, the `Abs` method is defined for the `Vertex` type. The `Abs` method takes 
 
 - A method can be called using the dot notation.
 
+
+-- Pointer Receivers 
+
+- A method can be defined with a pointer receiver.
+
+- A pointer receiver is a special case of a method with a receiver.
+
+```go
+type Vertex struct {
+	Lat, Long float64
+}
+
+func (v *Vertex)Abs()float64{
+	return math.Sqrt(v.Lat*v.Lat + v.Long*v.Long);
+}
+
+func main(){
+	v := Vertex{1, 2}
+	fmt.Println(v.Abs());
+}
+```
+
+Why do we need to use pointer receivers?
+
+Because, the `Abs` method can modify the value of the receiver.
+
+In simple terms, it is used to modify the value of the receiver.
+
+
+-- Value Receivers
+
+- A method can be defined with a value receiver.
+
+- A value receiver is a special case of a method with a receiver.
+
+```go
+type Vertex struct {
+	Lat, Long float64
+}
+
+func (v Vertex)Abs()float64{
+	return math.Sqrt(v.Lat*v.Lat + v.Long*v.Long);
+}
+
+func main(){
+	v := Vertex{1, 2}
+	fmt.Println(v.Abs());
+}
+```
+
+Why do we need to use value receivers?
+
+Because, the `Abs` method cannot modify the value of the receiver.
+
+In simple terms, it is used to access the value of the receiver.
