@@ -567,3 +567,22 @@ func main(){
 ```
 
 Here, the `sum` function can accept a variable number of arguments. The `nums` parameter is a slice of integers.
+
+
+
+### Loop over slices
+
+- The `range` keyword is used to loop over the elements of a slice.
+
+- The `range` keyword can be used to loop over the elements of a slice.
+
+```go
+func main(){
+    primes := [6]int{2,3,5,7,11,13};
+    for i,v := range primes{
+        fmt.Printf("%d %d\n",i,v);
+    }
+}
+```
+
+Here, the `range` keyword is used to loop over the elements of the slice `primes`. The `i` variable is used to store the index of the element, and the `v` variable is used to store the value of the element.
