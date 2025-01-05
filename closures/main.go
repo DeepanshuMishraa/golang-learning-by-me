@@ -17,3 +17,5 @@ func main() {
 		fmt.Println(post(i), neg(i))
 	}
 }
+
+

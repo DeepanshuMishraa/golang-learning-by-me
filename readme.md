@@ -765,3 +765,33 @@ Here, the `adder` function is defined inside the `main` function. The `adder` fu
 The `post` and `neg` variables are assigned the return values of the `adder` function.
 
 
+### Methods
+
+- A method is a function that is associated with a specific type.
+
+- If you are coming from typescript, then you will know that typescript has a concept of classes.
+
+- In Go, a method is a function that is associated with a specific type.
+
+- A method is defined using the `func` keyword followed by the receiver type, the method name, and the method parameters and the method body.
+
+```go
+type Vertex struct {
+	Lat, Long float64
+}
+
+func (v Vertex)Abs()float64{
+	return math.Sqrt(v.Lat*v.Lat + v.Long*v.Long);
+}
+
+func main(){
+	v := Vertex{1, 2}
+	fmt.Println(v.Abs());
+}
+```
+
+Here, the `Abs` method is defined for the `Vertex` type. The `Abs` method takes no parameters and returns a float64.
+
+
+- A method can be called using the dot notation.
+
