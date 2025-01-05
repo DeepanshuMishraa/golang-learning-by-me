@@ -924,3 +924,82 @@ func (v Vertex) Abs() float64 {
 Here, the `Vertex` type implements the `Abser` interface.
 
 
+
+
+### Generics
+
+- Generics are used to create reusable components.
+
+- Generics help us create type parameters.
+
+- Generics are used to create type constraints.
+
+- For eg: If we need to create two functions that perform the same operation on two different types, then we can use generics.
+
+```go
+func IndexInt(s []int, x int) int {
+	for i, v := range s {
+		if v == x {
+			return i
+		}
+	}
+	return -1
+}
+
+// IndexString returns the index of the first occurrence of x in s, or -1 if not present.
+func IndexString(s []string, x string) int {
+	for i, v := range s {
+		if v == x {
+			return i
+		}
+	}
+	return -1
+}
+
+```
+
+The above functions can be used to find the index of an element in a slice.
+
+```go
+func main() {
+	si := []int{1, 2, 3, 4, 5}
+	fmt.Println(IndexInt(si, 3))
+
+	ss := []string{"a", "b", "c", "d", "e"}
+	fmt.Println(IndexString(ss, "c"))
+}
+```
+
+Here, the `IndexInt` function is used to find the index of an integer in a slice of integers. The `IndexString` function is used to find the index of a string in a slice of strings.
+
+Now if we use generics : 
+
+```go
+
+// IndexInt returns the index of the first occurrence of x in s, or -1 if not present.
+func IndexInt[T comparable](s []T, x T) int {
+	for i, v := range s {
+		if v == x {
+			return i
+		}
+	}
+	return -1
+}
+```
+
+Here, the `IndexInt` function is used to find the index of an integer in a slice of integers. The `IndexString` function is used to find the index of a string in a slice of strings.
+
+
+what does `T comparable` mean?
+
+- `T` is a type parameter.
+
+- `comparable` is a type constraint.
+
+- `T` is a type parameter that can be any type that satisfies the `comparable` constraint.
+
+- why use comparable keyword? not any other keyword?
+
+- The `comparable` constraint is used to specify that the type parameter `T` must be a comparable type.
+
+- The `comparable` constraint is used to specify that the type parameter `T` must be a type that supports the `==` and `!=` operators.
