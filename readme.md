@@ -684,3 +684,84 @@ func main(){
 Here, the `range` keyword is used to loop over the elements of the map `m`. The `key` variable is used to store the key of the element, and the `value` variable is used to store the value of the element.
 
 - The memory location of maps is not fixed and can be moved because of garbage collection. So, it is not recommended to use maps as keys in a map.
+
+
+#### Difference between map and struct
+
+- A map is a collection of key-value pairs.
+
+- A map is a value type.
+
+- A map is a data structure that stores key-value pairs.
+
+- A map has the search, insert, and delete operations with O(1) time complexity.
+
+- A map is a reference type.
+
+
+### Anonymous Functions
+
+- In Go, functions are first-class citizens means they can be assigned to variables, passed as arguments to other functions, and returned as values from other functions.
+
+- Anonymous functions are functions without a name.
+
+- Anonymous functions are declared using the `func` keyword followed by the function parameters and the function body.
+
+```go
+func main(){
+    sum := func(x,y int)int{
+        return x+y;
+    }
+    fmt.Println(sum(3,4));
+}
+```
+
+Here, the `sum` function is an anonymous function that takes two integers as parameters and returns their sum.
+
+Another way to declare an anonymous function:
+
+```go
+func main(){
+    sum := func(x,y int) int {
+        return x+y;
+    }
+    fmt.Println(sum(3,4));
+}
+```
+
+The above statement is equivalent to the previous one.
+
+- Anonymous functions can be used as arguments to other functions.
+
+
+### Closures
+
+- A closure is a function value that references variables from outside its body.
+
+- In simple terms, a closure is a function that has access to variables from outside its body.
+
+- A closure is created when a function is defined inside another function.
+
+```go
+func adder() func(int) int {
+    sum := 0
+    return func(x int) int {
+        sum += x
+        return sum
+    }
+}
+
+func main() {
+    post, neg := adder(), adder()
+
+    for i := 0; i < 10; i++ {
+        fmt.Println(post(i), neg(i))
+    }
+}
+```
+
+Here, the `adder` function is defined inside the `main` function. The `adder` function returns a function that adds the value of `i` to the sum.
+
+The `post` and `neg` variables are assigned the return values of the `adder` function.
+
+
