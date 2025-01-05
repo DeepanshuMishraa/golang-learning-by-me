@@ -850,3 +850,77 @@ Why do we need to use value receivers?
 Because, the `Abs` method cannot modify the value of the receiver.
 
 In simple terms, it is used to access the value of the receiver.
+
+
+### Interfaces
+
+- An interface is a collection of methods.
+
+- An interface is a reference type.
+
+- An interface is a type that defines a set of methods.
+
+- An interface is used to define a contract that a type must implement.
+
+```go
+type Abser interface {
+	Abs() float64
+}
+```
+
+Here, the `Abser` interface is defined with a single method `Abs` that returns a float64.
+
+- An interface can be implemented by a type.
+
+```go
+type MyFloat float64
+func (f MyFloat) Abs() float64 {
+	if f < 0 {
+		return float64(-f)
+	}
+	return float64(f)
+}
+```
+
+Here, the `MyFloat` type implements the `Abser` interface.
+
+- An interface can be implemented by a pointer to a type.
+
+```go
+type Vertex struct {
+	X, Y float64
+}
+func (v *Vertex) Abs() float64 {
+	return math.Sqrt(v.X*v.X + v.Y*v.Y)
+}
+```
+
+Here, the `Vertex` type implements the `Abser` interface.
+
+- An interface can be implemented by a value.
+
+```go
+type Vertex struct {
+	X, Y float64
+}
+func (v Vertex) Abs() float64 {
+	return math.Sqrt(v.X*v.X + v.Y*v.Y)
+}
+```
+
+Here, the `Vertex` type implements the `Abser` interface.
+
+- An interface can be implemented by a struct.
+
+```go
+type Vertex struct {
+	X, Y float64
+}
+func (v Vertex) Abs() float64 {
+	return math.Sqrt(v.X*v.X + v.Y*v.Y)
+}
+```
+
+Here, the `Vertex` type implements the `Abser` interface.
+
+
