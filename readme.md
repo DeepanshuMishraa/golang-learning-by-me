@@ -586,3 +586,101 @@ func main(){
 ```
 
 Here, the `range` keyword is used to loop over the elements of the slice `primes`. The `i` variable is used to store the index of the element, and the `v` variable is used to store the value of the element.
+
+
+
+### Maps
+
+- A map is a collection of key-value pairs.
+
+- A map is a value type.
+
+- A map is a data structure that stores key-value pairs.
+
+- A map has the search, insert, and delete operations with O(1) time complexity.
+
+```go
+func main(){
+    m := make(map[string]int);
+    m["one"] = 1;
+    m["two"] = 2;
+    m["three"] = 3;
+    fmt.Println(m);
+}
+```
+
+Here, we have created a map `m` with three key-value pairs. The `make` function is used to create a new map.
+
+Another way to create a map:
+
+```go
+func main(){
+    m := map[string]int{"one":1,"two":2,"three":3};
+    fmt.Println(m);
+}
+```
+
+The above statement is equivalent to the previous one.
+
+#### Accessing Map Elements
+
+- The `m[key]` operator is used to access the value associated with the key.
+
+- The `m[key]` operator returns the value associated with the key.
+
+```go
+func main(){
+    m := map[string]int{"one":1,"two":2,"three":3};
+    fmt.Println(m["one"]);
+}
+
+When the key is not found, the zero value of the element type is returned.
+
+When we use var to declare a variable , then we cannot manipulate the value of the variable as it is nil.
+
+So prefer to initialize the map using make or map literal.
+```
+
+#### Map Literals
+
+- A map literal is like an array literal without the length.
+
+- A map literal creates the underlying array and builds a map that references it.
+
+```go
+func main(){
+    q := map[string]int{"one":1,"two":2,"three":3};
+    fmt.Println(q);
+}
+
+#### Delete on map
+
+- The `delete` function deletes the key-value pair from the map.
+
+- The `delete` function does not return any value.
+
+```go
+func main(){
+    m := map[string]int{"one":1,"two":2,"three":3};
+    delete(m,"two");
+    fmt.Println(m);
+}
+```
+
+It deletes the key-value pair from the map.
+
+
+#### Loop over maps
+
+```go 
+func main(){
+    m := map[string]int{"one":1,"two":2,"three":3};
+    for key,value := range m{
+        fmt.Printf("%s : %d\n",key,value);
+    }
+}
+```
+
+Here, the `range` keyword is used to loop over the elements of the map `m`. The `key` variable is used to store the key of the element, and the `value` variable is used to store the value of the element.
+
+- The memory location of maps is not fixed and can be moved because of garbage collection. So, it is not recommended to use maps as keys in a map.
