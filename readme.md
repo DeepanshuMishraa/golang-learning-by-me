@@ -1003,3 +1003,298 @@ what does `T comparable` mean?
 - The `comparable` constraint is used to specify that the type parameter `T` must be a comparable type.
 
 - The `comparable` constraint is used to specify that the type parameter `T` must be a type that supports the `==` and `!=` operators.
+
+
+### Concurrency and Goroutines
+
+- Concurrency is the ability to run multiple tasks at the same time.
+
+- Concurrency is used to create programs that can perform multiple tasks simultaneously.
+
+- Concurrency is used to create programs that can handle multiple requests at the same time.
+
+#### How concurrency works in Go?
+
+- Go has built-in support for concurrency.
+
+- Go has a built-in `go` keyword that is used to create a new goroutine.
+
+- A goroutine is a lightweight thread managed by the Go runtime.
+
+- A goroutine is a function that runs concurrently with other functions.
+
+How Goroutines work?
+
+
+```go
+func say(s string) {
+    for i := 0; i < 5; i++ {
+        time.Sleep(100 * time.Millisecond)
+        fmt.Println(s)
+    }
+}
+
+func main() {
+    go say("world")
+    say("hello")
+}
+```
+
+Here, the `say` function is called using the `go` keyword. The `say` function is executed concurrently with the `main` function.
+
+- The order of execution of the goroutines is not guaranteed because it depends on the hardware , the operating system, and the Go runtime.
+
+
+### Channels
+
+- A channel is a communication mechanism that allows one goroutine to send data to another goroutine.
+
+- A channel is a built-in type in Go.
+
+- A channel is used to send and receive data between goroutines.
+
+- A channel is used to synchronize the execution of goroutines.
+
+
+
+#### How to create a channel?
+
+- A channel is created using the `make` function.
+
+- A channel is created using the `make` function with the `chan` keyword followed by the type.
+
+```go
+ch := make(chan int)
+```
+
+Here, the `ch` channel is created with the `int` type.
+
+#### How to send data to a channel?
+
+- Data is sent to a channel using the `<-` operator.
+
+- Data is sent to a channel using the `<-` operator followed by the channel name.
+
+```go
+
+func sum(s []int, c chan int) {
+    sum := 0
+    for _, v := range s {
+        sum += v
+    }
+    c <- sum
+}
+
+func main() {
+    s := []int{7, 2, 8, -9, 4, 0}
+
+    c := make(chan int)
+    go sum(s[:len(s)/2], c)
+    go sum(s[len(s)/2:], c)
+    x, y := <-c, <-c
+
+    fmt.Println(x, y, x+y)
+}
+```
+
+Here, the `sum` function is called using the `go` keyword. The `sum` function is executed concurrently with the `main` function.
+
+- The `c <- sum` statement is used to send the sum to the channel.
+
+
+#### How to receive data from a channel?
+
+
+- Data is received from a channel using the `<-` operator.
+
+- Data is received from a channel using the `<-` operator followed by the channel name.
+
+```go
+
+func sum(s []int, c chan int) {
+    sum := 0
+    for _, v := range s {
+        sum += v
+    }
+    c <- sum
+}
+
+func main() {
+    s := []int{7, 2, 8, -9, 4, 0}
+
+    c := make(chan int)
+    go sum(s[:len(s)/2], c)
+    go sum(s[len(s)/2:], c)
+    x, y := <-c, <-c
+
+    fmt.Println(x, y, x+y)
+}
+```
+
+Here, the `x, y := <-c, <-c` statement is used to receive the sum from the channel.
+
+
+#### Buffered Channels
+
+- A buffered channel is a channel with a buffer.
+
+
+- A buffered channel is created using the `make` function with the `chan` keyword followed by the type and the buffer size.
+
+```go
+
+func main() {
+    ch := make(chan int, 2)
+    ch <- 1
+    ch <- 2
+    fmt.Println(<-ch)
+    fmt.Println(<-ch)
+}
+```
+
+Here, the `ch` channel is created with a buffer size of `2`. The `ch <- 1` statement is used to send the value `1` to the channel. The `ch <- 2` statement is used to send the value `2` to the channel.
+
+
+#### Range and Close
+
+- The `range` keyword is used to iterate over the elements of a channel.
+
+- The `range` keyword is used to iterate over the elements of a channel until the channel is closed.
+
+
+```go   
+func fibonacci(n int, c chan int) {
+    x, y := 0, 1
+    for i := 0; i < n; i++ {
+        c <- x
+        x, y = y, x+y
+    }
+    close(c)
+}
+
+func main() {
+    c := make(chan int, 10)
+    go fibonacci(cap(c), c)
+    for i := range c {
+        fmt.Println(i)
+    }
+}
+``` 
+
+Here, the `range c` statement is used to iterate over the elements of the channel `c` until the channel is closed.
+
+
+#### Select
+
+- The `select` statement is used to wait for multiple channel operations.
+
+- The `select` statement is used to wait for multiple channel operations and execute
+
+
+```go
+
+func fibonacci(c, quit chan int) {
+    x, y := 0, 1
+    for {
+        select {
+        case c <- x:
+            x, y = y, x+y
+        case <-quit:
+            fmt.Println("quit")
+            return
+        }
+    }
+}   
+
+func main() {
+    c := make(chan int)
+    quit := make(chan int)
+    go func() {
+        for i := 0; i < 10; i++ {
+            fmt.Println(<-c)
+        }
+        quit <- 0
+    }()
+    fibonacci(c, quit)
+}
+```
+
+Here, the `select` statement is used to wait for multiple channel operations. The `case c <- x` statement is used to send the value `x` to the channel `c`. The `case <-quit` statement is used to receive the value from the channel `quit`.
+
+
+### Mutex
+
+- A mutex is used to synchronize access to shared resources.
+
+
+- A mutex is a synchronization primitive that is used to protect shared resources.
+
+
+
+```go
+
+var (
+    sum int
+    mu  sync.Mutex
+)
+
+func add() {
+    mu.Lock()
+    sum++
+    mu.Unlock()
+}
+
+func main() {
+    for i := 0; i < 1000; i++ {
+        go add()
+    }
+    time.Sleep(time.Second)
+    fmt.Println(sum)
+}
+``` 
+
+Here, the `mu.Lock()` statement is used to lock the mutex. The `sum++` statement is used to increment the value of `sum`. The `mu.Unlock()` statement is used to unlock the mutex.
+
+What is the use of mutex here in simple words?
+
+- The `mu.Lock()` statement is used to lock the mutex to prevent other goroutines from accessing the shared resource.
+
+- The `mu.Unlock()` statement is used to unlock the mutex to allow other goroutines to access the shared resource.
+
+
+### WaitGroup
+
+- A WaitGroup is used to wait for a collection of goroutines to finish.
+
+
+- A WaitGroup is a synchronization primitive that is used to wait for a collection of goroutines to finish.
+
+
+```go
+
+var wg sync.WaitGroup
+
+func add() {
+    defer wg.Done()
+    sum++
+}
+
+func main() {
+    for i := 0; i < 1000; i++ {
+        wg.Add(1)
+        go add()
+    }
+    wg.Wait()
+    fmt.Println(sum)
+}
+```
+
+Here, the `wg.Add(1)` statement is used to add a goroutine to the WaitGroup. The `wg.Done()` statement is used to signal that the goroutine has finished.
+
+in simpler words:
+
+- The `wg.Add(1)` statement is used to add a goroutine to the WaitGroup to wait for the goroutine to finish.
+
+- The `wg.Done()` statement is used to signal that the goroutine has finished.
+
+
