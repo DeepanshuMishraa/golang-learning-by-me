@@ -18,5 +18,5 @@ func fizzbuz() {
 }
 
 func main() {
-	fizzbuz();
+	fizzbuz()
 }
